@@ -1,10 +1,15 @@
-<h1>Nuevo Héroe <small>asd</small> </h1>
+<h1>
+     {{ ( heroe.id) ? 'Editar' : 'Nuevo'}}
+     Héroe 
+     <small> {{ heroe.superhero }}</small> 
+</h1>
 
-<mat-divider></mat-divider>
+
 
 <div fxLayout="row" 
      fxLayout.xs="column"
      fxLayoutGap="40px">
+
         <div fxFlex="50" fxLayout="column">
 
             <div fxLayout="row"
@@ -65,16 +70,30 @@
 
             <br>
 
-            <button mat-raised-button
-                    color="primary"
-                    (click)="guardar()">
-                <mat-icon>edit</mat-icon>
-                Guardar
-            </button>
-            
-            <div fxFlex="50">
-                <img src="heroe | imagen" alt="">
-            </div>
+            <div fxLayout>
 
+                <button mat-raised-button
+                        color="primary"
+                        (click)="guardar()">
+                    <mat-icon>edit</mat-icon>
+                    {{ ( heroe.id) ? 'Actualizar' : 'Crear'}}
+                </button>
+
+                <span class="spacer"></span>
+                
+                <button *ngIf="heroe.id"
+                        mat-raised-button
+                        (click)="borrarHeroe()"
+                        color="warn">
+                    <mat-icon>remove</mat-icon>
+                    Borrar
+                </button>
+
+            </div>
+            
+        </div>
+
+        <div fxFlex="50">
+            <img [src]="heroe | imagen" >
         </div>
 </div>
